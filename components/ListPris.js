@@ -1,5 +1,6 @@
 import React from "react";
 import {ScrollView,Image,ListView,View,Text, TextInput,StyleSheet,Animated,Easing,Button} from "react-native";
+import ListItems from "./ListItems.js"; 
 /*
 sac : {
   poidsMax : valeur,
@@ -159,7 +160,7 @@ export default class ListPris extends React.Component {
       styleContainer=styles.containerRed;
     composant=null;
     if(rowData.pris){
-      composant=<Image source={require('C:\\Users\\Asus\\Desktop\\React\\Sac\\assets\\bpwhite.png')}/>
+      composant=<Image source={require('../assets/bpwhite.png')}/>
     }
     else {
       composant=<Text style={styles.valeur}>{"____"}</Text>
@@ -190,7 +191,7 @@ export default class ListPris extends React.Component {
         <Text style={styles.title}>Liste des Items</Text>
 
         <View style={styles.bpwrap}>
-          <Image source={require('C:\\Users\\Asus\\Desktop\\React\\Sac\\assets\\backpack.png')} />
+          <Image source={require('../assets/backpack.png')} />
           <View style={styles.bpinfowrap}>
             <Text style={styles.bginfo}>Poids : {this.state.sac.poidsObtenu} </Text>
             <Text style={styles.bginfo}>Remplit à: {this.state.sac.poidsObtenu/this.state.sac.poidsMax*100 +"%"} </Text>
@@ -198,14 +199,7 @@ export default class ListPris extends React.Component {
           </View>
 
         </View>
-        <ScrollView>
-
-          <ListView
-            style={styles.listview}
-            dataSource={this.state.dataSource}
-            renderRow={(rowData) => this.listItemRender(rowData)}
-          />
-        </ScrollView>
+        <ListItems></ListItems>
         <Button
         title="Terminer"
         onPress={()=>navigate("Home")}

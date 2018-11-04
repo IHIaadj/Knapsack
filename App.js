@@ -6,6 +6,8 @@ import { createStackNavigator } from 'react-navigation';
 import Accueil from "./components/Accueil";
 import ChoisirPoids from "./components/ChoisirPoids";
 import ListPris from "./components/ListPris";
+import ListItems from "./components/ListItems";
+import SaisirItems from "./components/SaisirItems";
 
 
 export default createStackNavigator({
@@ -17,6 +19,9 @@ export default createStackNavigator({
   },
   ListPris:{
     screen:ListPris
+  },
+  Items:{
+    screen:SaisirItems
   }
 }, {
     initialRouteName: 'Home',

@@ -16,7 +16,7 @@ export default class Accueil extends React.Component {
         <Text style={styles.title}>Knapsack</Text>
         <View>
           <View style={styles.buttonContainer}>
-            <Image source={require('C:\\Users\\Asus\\Desktop\\React\\Sac\\assets\\backpack.png') } />
+            <Image source={require('../assets/backpack.png') } />
           </View>
           <View style={styles.buttonContainer}>
             <Button

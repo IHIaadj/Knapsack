@@ -1,7 +1,7 @@
 import React from "react";
 import {View,Text, TextInput,StyleSheet,Animated,Easing,Button} from "react-native";
 
-const backgroundImage = require('C:\\Users\\Asus\\Desktop\\React\\Sac\\assets\\backpack.png');
+const backgroundImage = require('../assets/backpack.png');
 const MAX_VALUE_POIDS=1000
 const MAX_NB_POS_POIDS=3
 
@@ -36,6 +36,7 @@ export default class ChoisirPoids extends React.Component {
     }).start()
   }
   render(){
+    const { navigate } = this.props.navigation;
     return(
       <View style={styles.container}>
         <Animated.Image
@@ -78,7 +79,7 @@ export default class ChoisirPoids extends React.Component {
             title="C'est parti!"
             color="#f2545B"
             style={styles.button}
-            onPress={this.confirmPoids}
+            onPress={()=>navigate("Items", {sac:{poidsMax:this.state.size}})}
             />
           </View>
       </View>
