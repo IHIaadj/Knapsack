@@ -35,6 +35,8 @@ export default class Accueil extends React.Component {
              />
           </View>
         </View>
+
+        <Text style={styles.signature}>BENMEZIANE Hadjer - DEBBAGH Nadir</Text>
       </View>
     );
 
@@ -60,5 +62,10 @@ const styles = StyleSheet.create({
   },
   button:{
     marginTop:5
+  }, 
+  signature:{
+    position:"absolute",
+    bottom:5, 
+    color:"#a2a2a2"
   }
 });

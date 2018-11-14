@@ -23,131 +23,36 @@ export default class ListItems extends React.Component {
     headerStyle:{backgroundColor:"#364958"},
     headerTintColor:"#FFF"
   };
+
+  componentWillReceiveProps({test}) {
+    test = JSON.stringify(test); 
+    var str = test;
+    var test = JSON.parse(str); 
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    console.log("be"+ test); 
+    test = ds.cloneWithRows(test); 
+    this.setState({...this.state.dataSource, test})
+  }
+
   constructor(props){
     super(props)
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state={
+      items : this.props.test, 
       sac:{
         poidsMax:200,
         valeurObtenue:100,
         poidsObtenu:190,
-        items:[
-        {
-          poids : 10,
-          valeur : 11,
-          nom : "Con",
-          pris : true
-        },
-        {
-          poids : 100,
-          valeur : 1,
-          nom : "Troll",
-          pris : true
-        },
-        {
-          poids : 90,
-          valeur : 33,
-          nom : "Lol",
-          pris : false
-        },
-        {
-          poids : 100,
-          valeur : 1,
-          nom : "Troll",
-          pris : true
-        },
-        {
-          poids : 90,
-          valeur : 33,
-          nom : "Lol",
-          pris : false
-        },
-        {
-          poids : 100,
-          valeur : 1,
-          nom : "Troll",
-          pris : true
-        },
-        {
-          poids : 90,
-          valeur : 33,
-          nom : "Lol",
-          pris : false
-        },
-        {
-          poids : 100,
-          valeur : 1,
-          nom : "Troll",
-          pris : true
-        },
-        {
-          poids : 90,
-          valeur : 33,
-          nom : "Lol",
-          pris : false
-        },
-        {
-          poids : 100,
-          valeur : 1,
-          nom : "Troll",
-          pris : true
-        },
-        {
-          poids : 90,
-          valeur : 33,
-          nom : "Lol",
-          pris : false
-        },
-        {
-          poids : 100,
-          valeur : 1,
-          nom : "Troll",
-          pris : true
-        },
-        {
-          poids : 90,
-          valeur : 33,
-          nom : "Lol",
-          pris : false
-        },
-        {
-          poids : 100,
-          valeur : 1,
-          nom : "Troll",
-          pris : true
-        },
-        {
-          poids : 90,
-          valeur : 33,
-          nom : "Lol",
-          pris : false
-        },
-        {
-          poids : 100,
-          valeur : 1,
-          nom : "Troll",
-          pris : true
-        },
-        {
-          poids : 90,
-          valeur : 33,
-          nom : "FIN",
-          pris : false
-        }
-      ]
+        items:this.props.test
       },
       dataSource:null
     }
-    /*this.state={
-      sac:this.props.navigator.params.sac,
-      dataSource:null
-    }
-    */
-    this.state.sac.items.sort(function(a, b) {
+    
+    /*this.state.items.sort(function(a, b) {
         return b.pris - a.pris;
-    });
-    this.state.dataSource=ds.cloneWithRows(this.state.sac.items);
+    });*/
+    this.state.dataSource=ds.cloneWithRows(this.props.test);
 
   }
   listItemRender(rowData){
@@ -170,32 +75,34 @@ export default class ListItems extends React.Component {
           {composant}
         </View>
         <View style={styles.itemInfo}>
-          <Text style={styles.nom}>{rowData.nom}</Text>
+          <Text style={styles.nom}>{rowData.name}</Text>
         </View>
         <View style={styles.itemInfo}>
-          <Text style={styles.valeur}>{rowData.poids+" kg"}</Text>
+          <Text style={styles.valeur}>{rowData.weight+" kg"}</Text>
         </View>
         <View style={styles.itemInfo}>
-          <Text style={styles.valeur}>{rowData.valeur+" دج "}</Text>
+          <Text style={styles.valeur}>{rowData.value+" دج "}</Text>
         </View>
-
       </View>
     );
 
   }
   render(){
-
+    const listView =<ScrollView> 
+    <ListView
+      style={styles.listview}
+      enableEmptySections={true}
+      dataSource={this.state.dataSource}
+      renderRow={(rowData) => this.listItemRender(rowData)}
+    />
+</ScrollView>; 
+    const text = <Text> Aucun objet dans la liste </Text>;
     return(
-    
-        <ScrollView>
+      <View>
+        {console.log(this.props.test)}
 
-          <ListView
-            style={styles.listview}
-            dataSource={this.state.dataSource}
-            renderRow={(rowData) => this.listItemRender(rowData)}
-          />
-        </ScrollView>
-      
+        { this.props.test[0] == null ? text : listView}
+      </View>
     );
   }
 

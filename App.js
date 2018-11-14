@@ -8,6 +8,7 @@ import ChoisirPoids from "./components/ChoisirPoids";
 import ListPris from "./components/ListPris";
 import ListItems from "./components/ListItems";
 import SaisirItems from "./components/SaisirItems";
+import RemplirSac from "./components/RemplirSac";
 
 
 export default createStackNavigator({
@@ -22,6 +23,9 @@ export default createStackNavigator({
   },
   Items:{
     screen:SaisirItems
+  }, 
+  Sac:{
+    screen:RemplirSac
   }
 }, {
     initialRouteName: 'Home',

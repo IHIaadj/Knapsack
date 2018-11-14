@@ -27,117 +27,12 @@ export default class ListPris extends React.Component {
   constructor(props){
     super(props)
 
+    const { params } = this.props.navigation.state;
+    const sac = params ? params.sac : null;
+    console.log(sac);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state={
-      sac:{
-        poidsMax:200,
-        valeurObtenue:100,
-        poidsObtenu:190,
-        items:[
-        {
-          poids : 10,
-          valeur : 11,
-          nom : "Con",
-          pris : true
-        },
-        {
-          poids : 100,
-          valeur : 1,
-          nom : "Troll",
-          pris : true
-        },
-        {
-          poids : 90,
-          valeur : 33,
-          nom : "Lol",
-          pris : false
-        },
-        {
-          poids : 100,
-          valeur : 1,
-          nom : "Troll",
-          pris : true
-        },
-        {
-          poids : 90,
-          valeur : 33,
-          nom : "Lol",
-          pris : false
-        },
-        {
-          poids : 100,
-          valeur : 1,
-          nom : "Troll",
-          pris : true
-        },
-        {
-          poids : 90,
-          valeur : 33,
-          nom : "Lol",
-          pris : false
-        },
-        {
-          poids : 100,
-          valeur : 1,
-          nom : "Troll",
-          pris : true
-        },
-        {
-          poids : 90,
-          valeur : 33,
-          nom : "Lol",
-          pris : false
-        },
-        {
-          poids : 100,
-          valeur : 1,
-          nom : "Troll",
-          pris : true
-        },
-        {
-          poids : 90,
-          valeur : 33,
-          nom : "Lol",
-          pris : false
-        },
-        {
-          poids : 100,
-          valeur : 1,
-          nom : "Troll",
-          pris : true
-        },
-        {
-          poids : 90,
-          valeur : 33,
-          nom : "Lol",
-          pris : false
-        },
-        {
-          poids : 100,
-          valeur : 1,
-          nom : "Troll",
-          pris : true
-        },
-        {
-          poids : 90,
-          valeur : 33,
-          nom : "Lol",
-          pris : false
-        },
-        {
-          poids : 100,
-          valeur : 1,
-          nom : "Troll",
-          pris : true
-        },
-        {
-          poids : 90,
-          valeur : 33,
-          nom : "FIN",
-          pris : false
-        }
-      ]
-      },
+      sac : sac, 
       dataSource:null
     }
     /*this.state={
@@ -171,13 +66,13 @@ export default class ListPris extends React.Component {
           {composant}
         </View>
         <View style={styles.itemInfo}>
-          <Text style={styles.nom}>{rowData.nom}</Text>
+          <Text style={styles.nom}>{rowData.name}</Text>
         </View>
         <View style={styles.itemInfo}>
-          <Text style={styles.valeur}>{rowData.poids+" kg"}</Text>
+          <Text style={styles.valeur}>{rowData.weight+" kg"}</Text>
         </View>
         <View style={styles.itemInfo}>
-          <Text style={styles.valeur}>{rowData.valeur+" دج "}</Text>
+          <Text style={styles.valeur}>{rowData.value+" دج "}</Text>
         </View>
 
       </View>
@@ -199,7 +94,13 @@ export default class ListPris extends React.Component {
           </View>
 
         </View>
-        <ListItems></ListItems>
+        <ScrollView> 
+            <ListView
+              style={styles.listview}
+              dataSource={this.state.dataSource}
+              renderRow={(rowData) => this.listItemRender(rowData)}
+            />
+        </ScrollView>
         <Button
         title="Terminer"
         onPress={()=>navigate("Home")}
@@ -220,7 +121,8 @@ const bleuFonc="#fff";//"#364958"
 const styles = StyleSheet.create({
   bpwrap:{
     justifyContent: 'center',
-    flexDirection:"row"
+    flexDirection:"row", 
+    marginBottom : 20
   },
   bpinfowrap:{
     justifyContent: 'center',
